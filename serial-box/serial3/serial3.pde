@@ -4,7 +4,7 @@ void openSerial() {
   String ports[] = Serial.list();
   String usbserial = "";
   for (String port : ports) {
-    if (port.indexOf("usbserial")>0)usbserial=port;
+    if (port.indexOf("serial")!=-1)usbserial=port;
   }
   if (usbserial!="")
   {
@@ -55,9 +55,9 @@ void serialEvent(Serial p) {
       if (i%10==0)println(inString);
       //i++;
       try {
-        roll = Double.parseDouble(numbers[0]);
-        pitch = Double.parseDouble(numbers[1]);
-        yaw = Double.parseDouble(numbers[2]);
+        roll = Double.parseDouble(numbers[0])/180*Math.PI;
+        pitch = Double.parseDouble(numbers[1])/180*Math.PI;
+        yaw = Double.parseDouble(numbers[2])/180*Math.PI;
       }
       catch(Exception e) {
         println(e);
