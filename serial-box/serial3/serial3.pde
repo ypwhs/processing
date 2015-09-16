@@ -13,7 +13,7 @@ void openSerial() {
   } else exit();
 }
 void setup() {
-  size(640, 360, P3D);
+  size(1024, 768, P3D);
   openSerial();
 }
 
@@ -40,7 +40,8 @@ void draw() {
   rotateZ(roll);
   noStroke();
   beginShape(QUADS);
-  box(150, 20, 100);
+  //box(150, 20, 100);
+  box(300, 60, 450);
   endShape();
   popMatrix();
 }
@@ -50,7 +51,7 @@ int i=0;
 void serialEvent(Serial p) { 
   String tmp = p.readString();
   if (tmp.equals("\n")) {
-    String numbers[] = inString.split("\t");
+    String numbers[] = inString.split(",");
     if (numbers.length>=3) {
       if (i%10==0)println(inString);
       //i++;
